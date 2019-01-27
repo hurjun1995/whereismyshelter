@@ -46,7 +46,7 @@ class ShelterModel(db.Model):
         return ShelterModel.query.all()
 
     @staticmethod
-    def get_one_shelter(id):
+    def get_shelter_by_id(id):
         return ShelterModel.query.get(id)
 
     def __repr(self):
