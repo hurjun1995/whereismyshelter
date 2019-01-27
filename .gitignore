@@ -4,3 +4,7 @@ environment/
 
 src/__pycache__/
 src/models/__pycache__/
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

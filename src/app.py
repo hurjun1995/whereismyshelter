@@ -9,6 +9,7 @@ def create_app(env_name):
     Create app
     """
 
+
     # app initiliazation
     app = Flask(__name__)
 

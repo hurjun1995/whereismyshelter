@@ -15,6 +15,9 @@ flask-bcrypt = "*"
 pyjwt = "*"
 pymysql = "*"
 mysql-connector-python = "*"
+psycopg2 = "*"
+gunicorn = "*"
+awsebcli = "*"
 
 [requires]
 python_version = "3.6"
