@@ -1,19 +1,20 @@
 [[source]]
+name = "pypi"
 url = "https://pypi.org/simple"
 verify_ssl = true
-name = "pypi"
+
+[dev-packages]
 
 [packages]
 flask = "*"
 flask-sqlalchemy = "*"
-"psycopg2" = "*"
 flask-migrate = "*"
 flask-script = "*"
 marshmallow = "*"
 flask-bcrypt = "*"
 pyjwt = "*"
-
-[dev-packages]
+pymysql = "*"
+mysql-connector-python = "*"
 
 [requires]
 python_version = "3.6"
