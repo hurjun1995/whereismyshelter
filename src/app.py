@@ -25,4 +25,29 @@ def create_app(env_name):
         """
         return 'Congratulations! Your first endpoint is workin'
 
+    @app.route('/login', method=['POST'])
+    def login():
+        data = request.get_json() or {}
+        return foo(data)
+
+    @app.route('/count/v1/out', method=['POST'])
+    def count_out():
+
+        data = request.get_json or {}
+        return foo(data)
+
+    @app.route('/count/', method=['GET'])
+    def get_count():
+        return foo(data)
+
+    @app.route('/count/v1/in', method=['POST'])
+    def count_in():
+        data = request.get_json or {}
+        return foo(data)
+
+    @app.route('/register', method=['POST'])
+    def register_shelter():
+        data = request.get_json or {}
+        return foo(data)
+
     return app
