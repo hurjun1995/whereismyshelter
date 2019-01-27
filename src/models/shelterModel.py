@@ -1,6 +1,7 @@
 from marshmallow import fields, Schema
 import datetime
 from . import db
+from .outHeadCountsModel import OutCountSchema
 
 
 class ShelterModel(db.Model):
@@ -16,6 +17,9 @@ class ShelterModel(db.Model):
     lon = db.Column(db.Float, nullable=False)
     max_capacity = db.Column(db.Integer)
     address = db.Column(db.String(128), nullable=False)
+    created_at = db.Column(db.DateTime)
+    modified_at = db.Column(db.DateTime)
+    out_count = db.relationship('HeadCountModel', backref='shelter')
 
     # class constructor
     def __init__(self, data):
@@ -23,6 +27,10 @@ class ShelterModel(db.Model):
         Class constructor
         """
         self.name = data.get('name')
+        self.address = data.get('address')
+        self.lat = data.get('lat')
+        self.lon('lon')
+        self.max_capacity = data.get('max_capacity')
         self.address = data.get('address')
         self.created_at = datetime.datetime.utcnow()
         self.modified_at = datetime.datetime.utcnow()
@@ -63,8 +71,9 @@ class ShelterSchema(Schema):
     name = fields.Str(required=True)
     lat = fields.Float(required=True)
     lon = fields.Float(required=True)
-    max_capacity = fields.Int(required=True)
+    max_capacity = fields.Int()
     address = fields.Str(required=True)
     created_at = fields.DateTime(dump_only=True)
     modified_at = fields.DateTime(dump_only=True)
+    out_count = fields.Nested(OutCountSchema, many=True)
 
