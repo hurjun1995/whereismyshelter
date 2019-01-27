@@ -1,3 +1,6 @@
 environment/
 
 .idea/
+
+src/__pycache__/
+src/models/__pycache__/
