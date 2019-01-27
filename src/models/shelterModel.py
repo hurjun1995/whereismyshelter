@@ -2,6 +2,7 @@ from marshmallow import fields, Schema
 import datetime
 from . import db
 
+
 class ShelterModel(db.Model):
     """
     Shelter Model
@@ -22,8 +23,7 @@ class ShelterModel(db.Model):
         Class constructor
         """
         self.name = data.get('name')
-        self.email = data.get('email')
-        self.password = data.get('password')
+        self.address = data.get('address')
         self.created_at = datetime.datetime.utcnow()
         self.modified_at = datetime.datetime.utcnow()
 
@@ -42,17 +42,29 @@ class ShelterModel(db.Model):
         db.session.commit()
 
     @staticmethod
-    def get_all_users():
+    def get_all_shelters():
         return ShelterModel.query.all()
 
     @staticmethod
-    def get_one_user(id):
+    def get_shelter_by_id(id):
         return ShelterModel.query.get(id)
 
     def __repr(self):
         return '<id {}>'.format(self.id)
 
+
 class ShelterSchema(Schema):
+    """
+
+    Shelter Schema
+    """
+
     id = fields.Int(dump_only=True)
     name = fields.Str(required=True)
-    # TODO: needs to be done after creating model
+    lat = fields.Float(required=True)
+    lon = fields.Float(required=True)
+    max_capacity = fields.Int(required=True)
+    address = fields.Str(required=True)
+    created_at = fields.DateTime(dump_only=True)
+    modified_at = fields.DateTime(dump_only=True)
+
