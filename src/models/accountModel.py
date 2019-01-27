@@ -2,6 +2,7 @@ from marshmallow import fields, Schema
 import datetime
 from . import db
 from . import bcrypt
+from .shelterModel import ShelterSchema
 
 class AccountModel(db.Model):
     """
@@ -18,6 +19,9 @@ class AccountModel(db.Model):
     password = db.Column(db.String(128), nullable=True)
     created_at = db.Column(db.DateTime)
     modified_at = db.Column(db.DateTime)
+
+    shelter_id = db.Column(db.Integer, db.ForeignKey('shelter.id'))
+    shelter = db.relationship('ShelterModel', back_populates="shelters")
 
     # class constructor
     def __init__(self, data):
@@ -51,7 +55,6 @@ class AccountModel(db.Model):
     def check_hash(self, password):
         return bcrypt.check_password_hash(self.password, password)
 
-
     @staticmethod
     def get_all_users():
         return AccountModel.query.all()
@@ -70,3 +73,17 @@ class AccountModel(db.Model):
 
     def __repr__(self):
         return '<id {}>'.format(self.id)
+
+
+class AccountSchema(Schema):
+    """
+    Account Schema
+    """
+    id = fields.Int(dump_only=True)
+    first_name = fields.Str(required=True)
+    last_name = fields.Str(required=True)
+    email = fields.Email(required=True)
+    password = fields.Str(required=True)
+    created_at = fields.DateTime(dump_only=True)
+    modified_at = fields.DateTime(dump_only=True)
+    shelter = fields.Nested(ShelterSchema)

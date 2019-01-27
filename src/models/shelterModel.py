@@ -2,6 +2,7 @@ from marshmallow import fields, Schema
 import datetime
 from . import db
 from .outHeadCountsModel import OutCountSchema
+from .inHeadCountModel import InHeadCountSchema
 
 
 class ShelterModel(db.Model):
@@ -20,6 +21,8 @@ class ShelterModel(db.Model):
     created_at = db.Column(db.DateTime)
     modified_at = db.Column(db.DateTime)
     out_count = db.relationship('HeadCountModel', backref='shelter')
+
+    inHeadCounts = db.relationship('InHeadCountModel', back_populates="shelters")
 
     # class constructor
     def __init__(self, data):
@@ -76,4 +79,5 @@ class ShelterSchema(Schema):
     created_at = fields.DateTime(dump_only=True)
     modified_at = fields.DateTime(dump_only=True)
     out_count = fields.Nested(OutCountSchema, many=True)
+    inHeadCounts = fields.Nested(InHeadCountSchema, many=True)
 
