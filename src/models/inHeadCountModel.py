@@ -1,9 +1,6 @@
 from marshmallow import fields, Schema
 import datetime
 from . import db
-from .shelterModel import ShelterSchema
-from .ageModel import AgeSchema
-from .genderModel import GenderSchema
 
 class InHeadCountModel(db.Model):
     """
@@ -11,19 +8,10 @@ class InHeadCountModel(db.Model):
     """
 
     # table name
-    __tablename__ = 'headcounts'
+    __tablename__ = 'inHeadCounts'
 
     id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.DateTime)
-
-    shelter_id = db.Column(db.Integer, db.ForeignKey('shelters.id'), nullable=False)
-    shelter = db.relationship('ShelterModel', back_populates="inHeadCount")
-
-    age_id = db.Column(db.Integer, db.ForeignKey('age.id'), nullable=False)
-    age = db.relationship('AgeModel', back_populates="inHeadCount")
-
-    gender_id = db.Column(db.Integer, db.ForeignKey('gender.id'), nullable=False)
-    gender = db.relationship('GenderModel', back_populates="inHeadCount")
 
     # class constructor
     def __init__(self, data):
@@ -68,9 +56,3 @@ class InHeadCountSchema(Schema):
     id = fields.Int(dump_only=True)
     created_at = fields.DateTime(dump_only=True)
     modified_at = fields.DateTime(dump_only=True)
-    shelter_id = fields.Int(required=True)
-    shelter = fields.Nested(ShelterSchema)
-    age_id = fields.Int(required=True)
-    age = fields.Nested(AgeSchema)
-    gender_id = fields.Int(required=True)
-    gender = fields.Nested(GenderSchema)

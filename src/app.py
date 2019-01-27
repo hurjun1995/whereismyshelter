@@ -13,6 +13,7 @@ def create_app(env_name):
     app = Flask(__name__)
 
     app.config.from_object(app_config[env_name])
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     bcrypt.init_app(app)
     db.init_app(app)

@@ -1,6 +1,5 @@
 from marshmallow import fields, Schema
 from . import db
-from .inHeadCountModel import InHeadCountSchema
 
 
 class GenderModel(db.Model):
@@ -13,8 +12,6 @@ class GenderModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.String(128), nullable=False)
-
-    inHeadCount = db.relationship('InHeadCountModel', back_populates="gender")
 
     # class constructor
     def __init__(self, data):
@@ -55,4 +52,3 @@ class GenderSchema(Schema):
     """
     id = fields.Int(dump_only=True)
     type = fields.String(required=True)
-    inHeadCount = fields.Nested(InHeadCountSchema)

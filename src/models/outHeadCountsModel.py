@@ -14,7 +14,6 @@ class OutCountModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.DateTime)
     modified_at = db.Column(db.DateTime)
-    shelter_id = db.Column(db.Integer, db.ForeignKey('shelter.id'), nullable=False)
 
     # class constructor
     def __init__(self, data):
@@ -45,4 +44,3 @@ class OutCountSchema(Schema):
     id = fields.Int(dump_only=True)
     created_at = fields.DateTime(dump_only=True)
     modified_at = fields.DateTime(dump_only=True)
-    shelter_id = fields.Int(required=True)
