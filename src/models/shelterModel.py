@@ -1,7 +1,7 @@
 from marshmallow import fields, Schema
 import datetime
 from . import db
-from .outCountModel import OutCountSchema
+from .outHeadCountsModel import OutCountSchema
 
 
 class ShelterModel(db.Model):

@@ -9,7 +9,7 @@ class OutCountModel(db.Model):
     """
 
     # table name
-    __tablename__ = 'headcounts'
+    __tablename__ = 'outHeadCounts'
 
     id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.DateTime)

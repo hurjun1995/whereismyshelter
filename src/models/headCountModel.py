@@ -2,9 +2,10 @@ from marshmallow import fields, Schema
 import datetime
 from . import db
 
+
 class HeadCountModel(db.Model):
     """
-    Account Model
+    Head Count Model
     """
 
     # table name
@@ -46,3 +47,11 @@ class HeadCountModel(db.Model):
 
     def __repr__(self):
         return '<id {}>'.format(self.id)
+
+class HeadCountSchema(Schema):
+    """
+    Head Count Schema
+    """
+    id = fields.Int(dump_only=True)
+    created_at = fields.DateTime(dump_only=True)
+    modified_at = fields.DateTime(dump_only=True)
