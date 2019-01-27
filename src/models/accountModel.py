@@ -3,6 +3,7 @@ import datetime
 from . import db
 from . import bcrypt
 
+
 class AccountModel(db.Model):
     """
     Account Model

@@ -1,7 +1,7 @@
-from flask import Flask
+from flask import Flask, url_for, request
 
 from .config import app_config
-from .models import db, bcrypt
+from .models import db, bcrypt, accountModel
 
 
 def create_app(env_name):
@@ -28,7 +28,11 @@ def create_app(env_name):
     @app.route('/login', method=['POST'])
     def login():
         data = request.get_json() or {}
-        return foo(data)
+        user = accountModel.AccountModel.get_user_by_email(data['body']['email'])
+        if user:
+            return user
+        else:
+            return ''
 
     @app.route('/count/v1/out', method=['POST'])
     def count_out():
