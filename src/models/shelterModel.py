@@ -54,6 +54,17 @@ class ShelterModel(db.Model):
 
 
 class ShelterSchema(Schema):
+    """
+
+    Shelter Schema
+    """
+
     id = fields.Int(dump_only=True)
     name = fields.Str(required=True)
-    # TODO: needs to be done after creating model
+    lat = fields.Float(required=True)
+    lon = fields.Float(required=True)
+    max_capacity = fields.Int(required=True)
+    address = fields.Str(required=True)
+    created_at = fields.DateTime(dump_only=True)
+    modified_at = fields.DateTime(dump_only=True)
+
